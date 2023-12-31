@@ -1,0 +1,14 @@
+select 
+  o.Date order_date,
+  pc.CategoryName category_name,
+  p.ProdName product_name,
+  p.Price product_price,
+  o.Quantity order_qty,
+  p.Price*o.Quantity total_sales,
+  c.CustomerEmail cust_email,
+  c.CustomerCity cust_city
+from `calm-airship-409701.rakamin.orders` o 
+left join `calm-airship-409701.rakamin.products` p on o.ProdNumber = p.ProdNumber 
+left join `calm-airship-409701.rakamin.categories` pc on p.Category = pc.CategoryID 
+left join `calm-airship-409701.rakamin.customers` c on o.CustomerID = c.CustomerID
+order by 1;
